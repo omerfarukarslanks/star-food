@@ -1,1 +1,23 @@
-<p>layout works!</p>
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar hidden lg:block"
+            nzWidth="19.313rem"
+            [nzCollapsedWidth]="0"
+            nzBreakpoint="lg"
+            [(nzCollapsed)]="isCollapsed"
+            (nzCollapsedChange)="collapseChange($event)"
+            [nzTrigger]="null"> <!-- 19.313rem = 309px -->
+    <star-food-sidebar></star-food-sidebar>
+  </nz-sider>
+
+
+  <nz-layout class="ml-5 lg:ml-43px mb-[116px] height-100vh">
+    <nz-header>
+      <star-food-header></star-food-header>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

@@ -1,0 +1,43 @@
+.mb0 {
+  @apply mb-0 #{!important};
+}
+
+.pt25 {
+  @apply pt-25px #{!important};
+}
+
+.pr26 {
+  @apply pr-26px #{!important};
+}
+
+.pr22 {
+  @apply pr-22px #{!important};
+}
+.pl29 {
+  @apply pl-29px #{!important};
+}
+
+.mt12 {
+  @apply mt-3 #{!important};
+}
+
+.h7 {
+  @apply h-7 #{!important};
+}
+
+:host ::ng-deep .ant-menu{
+  @apply bg-transparent #{!important};
+}
+
+:host ::ng-deep .ant-menu-item:hover {
+  @apply text-crayola #{!important}
+}
+
+.pl5 {
+  @apply pl-5 #{!important};
+}
+
+.ant-menu ul,
+.ant-menu ol {
+  @apply relative #{!important};
+}

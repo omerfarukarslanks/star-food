@@ -1,10 +1,15 @@
 import { NgxsConfig } from "@ngxs/store/src/symbols";
 import { environment } from "ng-zorro-antd/core/environments";
-import { SidebarState } from "./sidebar/sidebar.state";
+import { SidebarState } from "./sidebar";
+import { PageConfigState } from './page-config';
 
 export const STATES_MODULES = [
-  SidebarState
+  SidebarState, PageConfigState
 ];
+
+export const STORE_MODULES = {
+  key: ['sidebar']
+};
 
 export const OPTIONS_CONFIG: Partial<NgxsConfig> = {
   /**

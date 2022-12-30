@@ -1,19 +1,26 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
-import { SetIsCollapseAction, SidebarStateModel } from "./sidebar.action";
+import { SetIsCollapseAction, SetSidebarItemsAction, SidebarStateModel } from "./sidebar.action";
 import { Injectable } from "@angular/core";
+import { SidebarItemType } from '@star-food/model';
 
 @State<SidebarStateModel>({
   name: 'sidebar',
   defaults: {
     isCollapse: false,
+    sidebarItems: []
   }
 })
 @Injectable()
 export class SidebarState {
 
   @Selector()
-  static getIsCollapse(ctx: SidebarStateModel): boolean  {
+  static getIsCollapse(ctx: SidebarStateModel): boolean {
     return ctx.isCollapse;
+  }
+
+  @Selector()
+  static getSidebarItems(ctx: SidebarStateModel): Array<SidebarItemType> {
+    return ctx.sidebarItems;
   }
 
   @Action(SetIsCollapseAction)
@@ -21,5 +28,14 @@ export class SidebarState {
     ctx.patchState({
       isCollapse: action.isCollapse
     });
+  }
+
+  @Action(SetSidebarItemsAction)
+  setSidebarItemsAction(ctx: StateContext<SidebarStateModel>, action: SetSidebarItemsAction) {
+    if (!ctx.getState().sidebarItems || (ctx.getState().sidebarItems && ctx.getState().sidebarItems.length === 0)) {
+      ctx.patchState({
+        sidebarItems: action.sidebarItems
+      });
+    }
   }
 }
