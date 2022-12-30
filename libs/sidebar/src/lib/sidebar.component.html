@@ -7,9 +7,8 @@
   </a>
 </div>
 
-<ul nz-menu nzTheme="light" nzMode="inline" class="w-full pt25" [nzInlineCollapsed]="isCollapsed"
-    *ngIf="sidebarItems.length > 0">
-  <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: sidebarItems }"></ng-container>
+<ul nz-menu nzTheme="light" nzMode="inline" class="w-full pt25" [nzInlineCollapsed]="isCollapsed">
+  <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: (sidebarItems$ | async) }"></ng-container>
   <ng-template #menuTpl let-menus>
     <ng-container *ngFor="let menu of menus">
       <li

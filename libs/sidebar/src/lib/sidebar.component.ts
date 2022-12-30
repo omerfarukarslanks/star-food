@@ -1,7 +1,12 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { Store } from "@ngxs/store";
 import { DrawerService } from '@star-food/service';
+import { SidebarItemType } from "@star-food/model";
+import { Observable } from "rxjs";
+import { SidebarState } from "@star-food/store";
+import { UntilDestroy } from "@ngneat/until-destroy";
 
+@UntilDestroy()
 @Component({
   selector: 'star-food-sidebar',
   templateUrl: './sidebar.component.html',
@@ -13,52 +18,11 @@ export class SidebarComponent implements OnInit{
 
   isCollapsed = false;
   @Input() drawerIsCollapse = false;
-  sidebarItems: Array<any> = [
-    {
-      title: 'New Order',
-      routerLink: '/ui/order/create',
-      isCollapseCheck: true,
-      count: 0
-    },
-
-    {
-      title: 'Accepted',
-      routerLink: '/ui/order/accepted',
-      isCollapseCheck: true,
-      count: 0
-    },
-
-    {
-      title: 'Cooking',
-      routerLink: '',
-      isCollapseCheck: true,
-      count: 0
-    },
-
-    {
-      title: 'Parcel Ready',
-      routerLink: '',
-      isCollapseCheck: true,
-      count: 0
-    },
-
-    {
-      title: 'Delivered',
-      routerLink: '',
-      isCollapseCheck: true,
-      count: 0
-    },
-
-    {
-      title: 'Completed',
-      routerLink: '',
-      isCollapseCheck: true,
-      count: 0
-    },
-  ];
+  sidebarItems$?: Observable<Array<SidebarItemType>> ;
 
   ngOnInit() {
     this.isCollapsed = this.drawerIsCollapse;
+    this.sidebarItems$ = this.store.select(SidebarState.getSidebarItems);
   }
 
   closeMenu() {

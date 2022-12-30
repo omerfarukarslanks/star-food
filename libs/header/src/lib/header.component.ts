@@ -35,11 +35,11 @@ export class HeaderComponent {
     });
 
     drawerRef.afterOpen.subscribe(() => {
-      console.log('Drawer(Component) open');
+    //  console.log('Drawer(Component) open');
     });
 
     drawerRef.afterClose.subscribe((data: any) => {
-      console.log(data);
+      //console.log(data);
     });
   }
 }

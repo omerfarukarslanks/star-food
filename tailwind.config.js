@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./apps/star-food/src/**/*.{html,ts}",
-  "./libs/**/**/*.{html,ts}",
+    "./libs/**/**/*.{html,ts}",
     "./libs/**/*.{html,ts}"],
   theme: {
     fontSize: {
@@ -9,12 +9,14 @@ module.exports = {
       '14': ['clamp(0.688rem, 0.729vw, 0.875rem)', 'normal'],
       '15': ['clamp(0.75rem, 0.781vw, 0.938rem)', 'normal'],
       '16': ['clamp(0.688rem, 0.833vw, 1rem)', 'normal'],
+      '17': ['clamp(0.688rem, 0.833vw, 1.063rem)', 'normal'],
       '18': ['clamp(0.75rem, 0.938vw, 1.125rem)', 'normal'],
       '20': ['clamp(0.75rem, 1.042vw, 1.25rem)', '1.5rem'],
       '20-normal': ['clamp(0.75rem, 1.042vw, 1.25rem)', 'normal'],
       '22': ['clamp(0.75rem, 1.146vw, 1.25rem)', '1.5rem'],
       '25': ['clamp(0.75rem, 1.302vw, 1.563rem)', 'normal'],
       '30': ['clamp(0.938rem,1.563vw, 1.875rem)', 'normal'],
+      '35': ['clamp(0.938rem,1.563vw, 2.188rem)', 'normal'],
     },
     borderWidth: {
       '0': '0',
@@ -27,6 +29,8 @@ module.exports = {
       'sf-pro-display': ['SF Pro Display', 'sans-serif'],
     },
     borderRadius: {
+      '3px': '3px',
+      '4px': '4px',
       '5px': '5px',
       '20px': '20px',
       '10px': '10px',
@@ -101,6 +105,8 @@ module.exports = {
         'crayola': '#2A71FA',
         'bright-gray': '#EBEBEB',
         'platinum': '#E5E5E5',
+        'chinese-silver': '#CCCCCC',
+        'chinese-white': '#E0E0E0',
 
         'sapphire': '#2d64a0',
         'silver': '#bfbfbf',
@@ -136,6 +142,7 @@ module.exports = {
         '177': '11.0625rem'
       },
       padding: {
+        '9px': '0.563rem',
         '15px': '0.938rem',
         '22px': '1.375rem',
         '25px': '1.563rem',
@@ -144,10 +151,15 @@ module.exports = {
         '29px': '1.813rem',
         '30px': '30px',
         '37px': '2.313rem',
+        '39px': '2.438rem',
         '41px': '2.563rem',
+        '43px': '2.688rem',
+        '51px': '3.188rem',
         '50%': '50%',
+        '18': '54px'
       },
       margin: {
+        '9px': '9px',
         '25px': '25px',
         '27px': '1.688rem',
         '43px': '2.688rem',

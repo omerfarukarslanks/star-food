@@ -6,6 +6,33 @@
   @apply text-18 font-medium text-white rounded-5px py-2.5 px-5 h-auto bg-crayola border-0 #{!important};
 }
 
+.transfer-type-tag {
+  @apply text-17 font-medium capitalize py-0.5 px-1.5 rounded-3px #{!important};
+}
+
+.cod-tag {
+  @apply text-17 font-medium capitalize py-0.5 px-1.5 rounded-3px ml-9px #{!important};
+}
 .ant-divider {
   @apply border-t-platinum border-t-1.5 border-solid #{!important};
+}
+
+:host ::ng-deep .ant-descriptions-item-label {
+  @apply text-17 text-sonic-silver font-normal;
+
+  &::after {
+    content: '';
+  }
+}
+
+:host ::ng-deep .ant-descriptions-item-content {
+  @apply text-18 text-black font-medium;
+}
+
+:host ::ng-deep .ant-descriptions-view {
+  @apply rounded-10px border-1.5 border-solid border-chinese-silver mt-5 pt-27px pl-43px pr-26px pb-26px;
+}
+
+:host ::ng-deep .ant-descriptions-row > td, .ant-descriptions-row > th {
+  @apply pb-1 #{!important};
 }

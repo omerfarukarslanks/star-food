@@ -7,6 +7,10 @@ export const STATES_MODULES = [
   SidebarState, PageConfigState
 ];
 
+export const STORE_MODULES = {
+  key: ['sidebar']
+};
+
 export const OPTIONS_CONFIG: Partial<NgxsConfig> = {
   /**
    * Run in development mode. This will add additional debugging features:
