@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { OrderStatusEnum, SidebarItemType } from '@star-food/model';
-import { Store } from "@ngxs/store";
-import { OrderService } from "@star-food/service";
-import { forkJoin } from "rxjs";
-import { SetSidebarItemsAction, SidebarState } from "@star-food/store";
-import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Store } from '@ngxs/store';
+import { OrderService } from '@star-food/service';
+import { forkJoin } from 'rxjs';
+import { SetSidebarItemsAction, SidebarState } from '@star-food/store';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Injectable()
@@ -30,7 +30,7 @@ export class LayoutResolver implements Resolve<Array<SidebarItemType>> {
             title: 'New Order',
             order: 1,
             count: results[4].length,
-            routerLink: '/ui/order/create'
+            routerLink: ''
           },
           {
             title: 'Accepted',

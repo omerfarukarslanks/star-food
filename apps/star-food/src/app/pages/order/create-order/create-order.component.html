@@ -1,1 +1,56 @@
-<p>create-order works!</p>
+<div class="grid grid-cols-3">
+  <div>
+    <form nzLayout="vertical" nz-form [formGroup]="createOrderFormGroup">
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzRequired nzFor="name">Name</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="The input is not valid Name!">
+          <input nz-input formControlName="name" id="name"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="items" nzRequired>Contract</nz-form-label>
+        <nz-form-control
+          [nzSpan]="24"
+          nzErrorTip="Please input your order items!"
+        >
+          <nz-select formControlName="items">
+            <nz-option nzLabel="+90" nzValue="+90"></nz-option>
+            <nz-option nzLabel="+91" nzValue="+91"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="transferType" nzRequired>Transfer Type</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Please select Transfer Type!">
+          <nz-radio-group id="transferType" formControlName="transferType">
+            <label nz-radio [nzValue]="TransferTypeEnum.DELIVERY">Delivery</label>
+            <label nz-radio [nzValue]="TransferTypeEnum.TAKEAWAY">Takeaway</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="message">Message</nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <textarea rows="4" id="message" formControlName="message" nz-input></textarea>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button nz-button nzType="primary">Register</button>
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
+
+
+  </div>
+  <div>
+    <nz-divider [nzType]="'vertical'"></nz-divider>
+  </div>
+  <div></div>
+</div>
