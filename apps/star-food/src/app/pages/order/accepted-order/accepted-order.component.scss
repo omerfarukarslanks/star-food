@@ -1,0 +1,11 @@
+.showing-order-button {
+  @apply text-18 rounded-5px border-0 px-5 py-15px bg-bright-gray h-auto flex items-center font-medium #{!important};
+}
+
+.add-new-order-button {
+  @apply text-18 font-medium text-white rounded-5px py-2.5 px-5 h-auto bg-crayola border-0 #{!important};
+}
+
+.ant-divider {
+  @apply border-t-platinum border-t-1.5 border-solid #{!important};
+}

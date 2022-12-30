@@ -17,9 +17,17 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/star-food/src/favicon.ico",
-          "apps/star-food/src/assets"
+          "apps/star-food/src/assets",
+          {
+            "glob": "**/*",
+            "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+            "output": "/assets/"
+          }
         ],
-        "styles": ["apps/star-food/src/styles.scss"],
+        "styles": [
+          "apps/star-food/src/styles.scss",
+          "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
+        ],
         "scripts": []
       },
       "configurations": {

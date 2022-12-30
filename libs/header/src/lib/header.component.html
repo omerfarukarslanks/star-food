@@ -1,1 +1,13 @@
-<p>header works!</p>
+<div class="flex bg-white items-center pt-1.5">
+  <a class="hidden lg:block text-black bg-white cursor-pointer" (click)="sidebarChange()">
+    <span class="text-22" nz-icon nzType="menu" nzTheme="outline"></span>
+  </a>
+
+  <a class="block lg:hidden text-black bg-white cursor-pointer" (click)="sidebarMobileChange()">
+    <span class="text-22" nz-icon nzType="menu" nzTheme="outline"></span>
+  </a>
+
+  <div class="bg-white text-30 pl-6 pt-2.5">
+    {{pageTitle$ | async}}
+  </div>
+</div>

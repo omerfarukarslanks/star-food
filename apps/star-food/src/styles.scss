@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+// Tailwind Styles
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media only screen and (max-width: 640px) {
+  .sidebar-drawer {
+    @apply w-full #{!important};
+  }
+}
+
+.sidebar-drawer {
+  @apply w-[309px] #{!important} ;
+}

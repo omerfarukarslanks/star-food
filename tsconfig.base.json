@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@star-food/header": ["libs/header/src/index.ts"],
+      "@star-food/service": ["libs/service/src/index.ts"],
+      "@star-food/sidebar": ["libs/sidebar/src/index.ts"],
+      "@star-food/store": ["libs/store/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

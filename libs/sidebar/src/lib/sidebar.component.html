@@ -1,1 +1,27 @@
-<p>sidebar works!</p>
+<div class="flex pt-27px pl-29px h-auto justify-between items-center">
+  <div class="h-auto">
+    <span class="font-medium text-30">Orders</span>
+  </div>
+  <a class="cursor-pointer text-black pr22 block lg:hidden" (click)="closeMenu()">
+    <span nz-icon nzType="close" nzTheme="outline" ></span>
+  </a>
+</div>
+
+<ul nz-menu nzTheme="light" nzMode="inline" class="w-full pt25" [nzInlineCollapsed]="isCollapsed"
+    *ngIf="sidebarItems.length > 0">
+  <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: sidebarItems }"></ng-container>
+  <ng-template #menuTpl let-menus>
+    <ng-container *ngFor="let menu of menus">
+      <li
+        *ngIf="!menu.children"
+        nz-menu-item
+        class="pl29 mt12 pr26 mb0 flex justify-between h7"
+        [routerLink]="menu.routerLink"
+      >
+        <span
+              class="text-18 font-medium">{{menu.title}}</span>
+        <span class="text-18 font-medium text-philippine-silver">{{menu.count}}</span>
+      </li>
+    </ng-container>
+  </ng-template>
+</ul>
