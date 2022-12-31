@@ -27,6 +27,14 @@ export const routes: Routes = [
   {
     path: 'parcel-ready',
     loadChildren: () => import('./parcel-ready/parcel-ready.module').then(m => m.ParcelReadyModule)
+  },
+  {
+    path: 'delivered',
+    loadChildren: () => import('./delivered/delivered.module').then(m => m.DeliveredModule)
+  },
+  {
+    path: 'completed',
+    loadChildren: () => import('./delivered/delivered.module').then(m => m.DeliveredModule)
   }
 ]
 

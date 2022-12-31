@@ -380,7 +380,7 @@
           "quantity": 1
         }
       ],
-      "orderStatus": "PARCEL_READY",
+      "orderStatus": "DELIVERED",
       "totalPrice": 60,
       "id": 12
     },

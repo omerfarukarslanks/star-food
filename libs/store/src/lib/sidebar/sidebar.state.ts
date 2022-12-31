@@ -76,13 +76,13 @@ export class SidebarState {
           title: 'Delivered',
           order: 5,
           count: results[3].length,
-          routerLink: ''
+          routerLink: '/ui/order/delivered'
         },
         {
           title: 'Completed',
           order: 6,
           count: results[1].length,
-          routerLink: ''
+          routerLink: '/ui/order/completed'
         }
       )
       ctx.patchState({
