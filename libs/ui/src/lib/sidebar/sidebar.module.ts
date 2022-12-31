@@ -6,7 +6,7 @@ import { NzMenuModule } from "ng-zorro-antd/menu";
 import { NzIconModule } from "ng-zorro-antd/icon";
 
 @NgModule({
-    imports: [CommonModule, RouterLink, NzMenuModule, NzIconModule],
+  imports: [CommonModule, RouterLink, NzMenuModule, NzIconModule],
   declarations: [SidebarComponent],
   exports: [
     SidebarComponent

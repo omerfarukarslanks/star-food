@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { Store } from "@ngxs/store";
 import { DrawerService } from '@star-food/service';
-import { SidebarComponent } from '@star-food/sidebar';
 import { PageConfigState, SetIsCollapseAction, SidebarState } from '@star-food/store';
 import { Observable } from "rxjs";
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
   selector: 'star-food-header',
@@ -35,7 +35,7 @@ export class HeaderComponent {
     });
 
     drawerRef.afterOpen.subscribe(() => {
-    //  console.log('Drawer(Component) open');
+      //  console.log('Drawer(Component) open');
     });
 
     drawerRef.afterClose.subscribe((data: any) => {

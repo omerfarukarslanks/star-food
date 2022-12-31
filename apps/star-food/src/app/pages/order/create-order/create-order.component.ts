@@ -109,6 +109,6 @@ export class CreateOrderComponent implements OnInit {
   }
 
   cancelOrder() {
-    console.log('cancel');
+    this.router.navigate(['/ui/order/accepted']);
   }
 }
