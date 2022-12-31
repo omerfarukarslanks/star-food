@@ -1,3 +1,3 @@
-import { CreateOrderType } from "@star-food/model";
+import { CreateOrderModel } from "./create-order.model";
 
-export type OrderListType = CreateOrderType;
+export class OrderListType extends CreateOrderModel {}
