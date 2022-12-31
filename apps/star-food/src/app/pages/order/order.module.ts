@@ -34,7 +34,7 @@ export const routes: Routes = [
   },
   {
     path: 'completed',
-    loadChildren: () => import('./delivered/delivered.module').then(m => m.DeliveredModule)
+    loadChildren: () => import('./completed/completed.module').then(m => m.CompletedModule)
   }
 ]
 

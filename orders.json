@@ -380,7 +380,7 @@
           "quantity": 1
         }
       ],
-      "orderStatus": "DELIVERED",
+      "orderStatus": "NEW_ORDER",
       "totalPrice": 60,
       "id": 12
     },
@@ -411,7 +411,7 @@
           "quantity": 1
         }
       ],
-      "orderStatus": "NEW_ORDER",
+      "orderStatus": "COOKING",
       "totalPrice": 60,
       "id": 13
     }
