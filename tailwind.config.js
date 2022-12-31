@@ -108,6 +108,7 @@ module.exports = {
         'platinum': '#E5E5E5',
         'chinese-silver': '#CCCCCC',
         'chinese-white': '#E0E0E0',
+        'malachite': '#0DC74E',
 
         'sapphire': '#2d64a0',
         'silver': '#bfbfbf',
@@ -144,6 +145,7 @@ module.exports = {
       },
       padding: {
         '9px': '0.563rem',
+        '14px': '0.875rem',
         '15px': '0.938rem',
         '18px': '1.125rem',
         '22px': '1.375rem',
@@ -162,6 +164,7 @@ module.exports = {
         '51px': '3.188rem',
         '100px': '6.25rem',
         '103px': '6.438rem',
+        '130px': '8.125rem',
         '50%': '50%',
         '18': '54px'
       },
@@ -188,7 +191,10 @@ module.exports = {
         '98%': '98%',
         '99%': '99%',
         '97%': '97%',
-        '70%': '70%'
+        '95%': '95%',
+        '94%': '94%',
+        '70%': '70%',
+
       }
     },
   },

@@ -15,6 +15,7 @@ import { NzTableModule } from "ng-zorro-antd/table";
 import { CdkFixedSizeVirtualScroll, CdkVirtualScrollViewport } from "@angular/cdk/scrolling";
 import { NzListModule } from "ng-zorro-antd/list";
 import { NzToolTipModule } from "ng-zorro-antd/tooltip";
+import { PhoneMaskModule } from "@star-food/directive";
 
 export const routes: Routes = [
   {
@@ -25,24 +26,25 @@ export const routes: Routes = [
 
 @NgModule({
   declarations: [CreateOrderComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    NzDividerModule,
-    NzFormModule,
-    ReactiveFormsModule,
-    NzInputModule,
-    NzSelectModule,
-    NzButtonModule,
-    NzRadioModule,
-    NzIconModule,
-    NzDescriptionsModule,
-    NzTableModule,
-    CdkVirtualScrollViewport,
-    NzListModule,
-    NzToolTipModule,
-    CdkFixedSizeVirtualScroll
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        NzDividerModule,
+        NzFormModule,
+        ReactiveFormsModule,
+        NzInputModule,
+        NzSelectModule,
+        NzButtonModule,
+        NzRadioModule,
+        NzIconModule,
+        NzDescriptionsModule,
+        NzTableModule,
+        CdkVirtualScrollViewport,
+        NzListModule,
+        NzToolTipModule,
+        CdkFixedSizeVirtualScroll,
+        PhoneMaskModule
+    ],
 })
 export class CreateOrderModule {
 }

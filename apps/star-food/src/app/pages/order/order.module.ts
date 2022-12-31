@@ -13,6 +13,10 @@ export const routes: Routes = [
     loadChildren: () => import('./accepted-order/accepted-order.module').then(m => m.AcceptedOrderModule)
   },
   {
+    path: 'new-order',
+    loadChildren: () => import('./new-order/new-order.module').then(m => m.NewOrderModule)
+  },
+  {
     path: 'create',
     loadChildren: () => import('./create-order/create-order.module').then(m => m.CreateOrderModule)
   }

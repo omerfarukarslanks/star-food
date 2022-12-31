@@ -12,5 +12,4 @@ export class SetIsCollapseAction {
 
 export class SetSidebarItemsAction {
   static readonly type = '[sidebar] SetIsCollapseAction';
-  constructor(public sidebarItems: Array<SidebarItemType>) {}
 }

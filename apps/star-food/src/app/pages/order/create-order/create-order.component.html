@@ -8,7 +8,7 @@
             <div class="flex">
               <label class="text-18 font-medium leading-21px">Order Number:</label>
               <span
-                class="ml-59px text-18 font-normal leading-21px text-sonic-silver">{{createOrderFormGroup.controls.orderNumber.value}}</span>
+                class="ml-59px text-18 font-normal leading-21px text-sonic-silver">#{{createOrderFormGroup.controls.orderNumber.value}}</span>
             </div>
 
           </nz-form-control>
@@ -39,15 +39,8 @@
             [nzValidateStatus]="createOrderFormGroup.controls['phoneNumber']"
             nzErrorTip="Please input your phone number!"
           >
-            <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
-              <ng-template #addOnBeforeTemplate>
-                <nz-select formControlName="phoneNumberPrefix" class="phone-select">
-                  <nz-option nzLabel="+90" nzValue="+90"></nz-option>
-                  <nz-option nzLabel="+91" nzValue="+91"></nz-option>
-                </nz-select>
-              </ng-template>
-              <input formControlName="phoneNumber" id="phoneNumber" nz-input/>
-            </nz-input-group>
+            <input formControlName="phoneNumber" id="phoneNumber" starFoodPhoneMask nz-input/>
+
           </nz-form-control>
         </nz-form-item>
 
@@ -71,10 +64,10 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="24" nzFor="items">Order Items</nz-form-label>
           <nz-form-control [nzSpan]="24">
-            <nz-select nzMode="multiple" nzShowSearch nzAllowClear nzPlaceHolder="Select a person"
+            <nz-select nzMode="multiple" nzShowSearch nzAllowClear
                        formControlName="items"
-                       [nzMaxTagPlaceholder]="itemsLength < 2 ? null : formLength"
-                       [nzMaxTagCount]="itemsLength === 1 ? 1 : 0"
+                       [nzMaxTagPlaceholder]="listOfSelectedOrderItems.length < 4 ? null : formLength"
+                       [nzMaxTagCount]="listOfSelectedOrderItems.length < 4 ? 3 : 0"
                        [nzOptionOverflowSize]=5
                        (ngModelChange)="orderItemSelectChange($event)"
             >
@@ -88,13 +81,14 @@
               </nz-option>
             </nz-select>
             <ng-template #formLength>
-              <p>{{itemsLength}} selected</p>
+              <p>{{listOfSelectedOrderItems.length}} selected</p>
             </ng-template>
           </nz-form-control>
 
         </nz-form-item>
 
       </form>
+
       <nz-list>
         <nz-list-item *ngFor="let orderItem of listOfSelectedOrderItems">
           <div class="grid grid-cols-4 w-full">
@@ -116,32 +110,75 @@
       </nz-list>
 
     </div>
-
     <div class="hidden lg:block divider"></div>
-
   </div>
 
   <div class="pl-0 pr-5 lg:pl-47px lg:pr-7">
 
     <div class="delivery-details">
-      <nz-descriptions nzTitle="Delivery Details" nzLayout="vertical"
-                       [nzColumn]="{ xxl: 5, xl: 5, lg: 5, md: 5, sm: 5, xs: 5 }">
-        <nz-descriptions-item nzSpan="2" nzTitle="Order Item">-</nz-descriptions-item>
-        <nz-descriptions-item nzSpan="2" nzTitle="Number">-</nz-descriptions-item>
-        <nz-descriptions-item nzTitle="Cost">-</nz-descriptions-item>
-      </nz-descriptions>
+      <div *ngIf="listOfSelectedOrderItems.length > 0;else defaultDeliverDetails">
+        <div class="grid grid-rows-3 rounded-5px border-0 bg-cultured pt-26px pl-26px pb-2.5">
+          <div><span class="text-18 text-black font-semibold">Delivery Details</span></div>
+          <div class="grid grid-cols-5 pt-14px">
+            <div class="col-span-2 text-17 text-sonic-silver font-normal">Order Item</div>
+            <div class="col-span-2 text-17 text-sonic-silver font-normal">Number</div>
+            <div class="text-17 text-sonic-silver font-normal">Quantity</div>
+          </div>
+          <div class="grid grid-cols-5" *ngFor="let selectedOrderItem of listOfSelectedOrderItems">
+            <div class="col-span-2">
+              {{selectedOrderItem.name}}
+            </div>
+            <div class="col-span-2">
+              {{selectedOrderItem.quantity}}
+            </div>
+            <div>
+              {{selectedOrderItem.price}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #defaultDeliverDetails>
+        <div class="grid grid-rows-3 rounded-5px border-0 bg-cultured pt-26px pl-26px pb-2.5">
+          <div><span class="text-18 text-black font-semibold">Delivery Details</span></div>
+          <div class="grid grid-cols-5 pt-14px">
+            <div class="col-span-2 text-17 text-sonic-silver font-normal">Order Item</div>
+            <div class="col-span-2 text-17 text-sonic-silver font-normal">Number</div>
+            <div class="text-17 text-sonic-silver font-normal">Quantity</div>
+          </div>
+          <div class="grid grid-cols-5">
+            <div class="col-span-2">-</div>
+            <div class="col-span-2">-</div>
+            <div>-</div>
+          </div>
+        </div>
+      </ng-template>
+
     </div>
 
     <div class="total-amount mt-29px">
       <nz-descriptions>
-        <nz-descriptions-item nzTitle="Total Amount">-</nz-descriptions-item>
+        <nz-descriptions-item
+          nzTitle="Total Amount">{{totalPrice !== 0 ? totalPrice : '-'}}</nz-descriptions-item>
       </nz-descriptions>
     </div>
 
-    <div class="mt-8 text-right">
-      <a class="add-new-order-button w-full md:w-auto" nz-button>
-        Add New Order
-      </a>
+    <div class="mt-8 text-right flex flex-col md:flex-row justify-between">
+      <div class="w-full md:w-95%">
+        <a class="cancel-order-button w-full md:w-95% block text-center
+                  py-18px " (click)="cancelOrder()">
+          Cancel
+        </a>
+
+      </div>
+      <div class="w-full mt-2 md:mt-0 md:w-95% flex md:justify-end">
+        <a class="add-new-order-button block w-full md:w-95% text-center
+                  py-18px" (click)="createOrder()"
+           [ngClass]="createOrderFormGroup.valid ? 'background-malachite' : 'background-crayola'">
+          Add New Order
+        </a>
+
+      </div>
     </div>
 
 

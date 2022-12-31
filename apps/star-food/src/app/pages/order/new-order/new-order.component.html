@@ -1,18 +1,4 @@
 <div class="pr-5 pt-5 lg:pt-37px lg:pr-41px">
-  <div class="flex justify-between">
-    <div>
-      <button class="showing-order-button" nz-button>
-        <span nz-icon nzType="menu"></span>
-        Showing 10 Orders
-      </button>
-    </div>
-    <div>
-      <a [routerLink]="'/ui/order/create'" class="add-new-order-button" nz-button>
-        Add New Order
-      </a>
-    </div>
-  </div>
-  <nz-divider></nz-divider>
 
   <nz-descriptions *ngFor="let order of orders" nzLayout="vertical"
                    [nzColumn]="{ xxl: 6, xl: 6, lg: 3, md: 3, sm: 2, xs: 1 }">
@@ -83,8 +69,8 @@
         <a class="mr-3">
           <span class="text-35" nz-icon nzType="printer" nzTheme="outline"></span>
         </a>
-        <a [routerLink]="'/ui/order/create'" class="add-new-order-button" nz-button>
-          Move to Cooking
+        <a (click)="orderStatusUpdate(order)" class="add-new-order-button" nz-button>
+          Move to Accepting
         </a>
       </div>
     </nz-descriptions-item>

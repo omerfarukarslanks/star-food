@@ -6,27 +6,22 @@
   @apply pr-34px #{!important};
 }
 
+.background-malachite {
+  @apply bg-malachite #{!important};
+}
+
+.background-crayola {
+  @apply bg-crayola #{!important};
+}
+
 .add-new-order-button {
-  @apply text-18 font-medium text-white rounded-5px py-18px px-103px h-auto bg-crayola border-0 #{!important};
+  @apply text-18 font-medium text-white rounded-5px border-0 #{!important};
 }
 
-.delivery-details {
-  ::ng-deep .ant-descriptions {
-    @apply rounded-5px border-0 bg-cultured pt-26px pl-26px pb-2.5;
-  }
-
-  ::ng-deep .ant-descriptions-item-label {
-    @apply text-17 text-sonic-silver font-normal;
-
-    &::after {
-      content: '';
-    }
-  }
-
-  ::ng-deep .ant-descriptions-item-content {
-    @apply text-18 text-black font-medium;
-  }
+.cancel-order-button {
+  @apply text-17 font-normal rounded-5px border-solid border-1.5 border-chinese-silver text-sonic-silver #{!important};
 }
+
 
 .total-amount {
   ::ng-deep .ant-descriptions {
@@ -74,10 +69,4 @@
 .divider:before {
   content: '';
   @apply h-full w-px bg-silver left-[30px] absolute top-0 #{!important};
-}
-
-.demo-infinite-container {
-  height: 300px;
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
 }
