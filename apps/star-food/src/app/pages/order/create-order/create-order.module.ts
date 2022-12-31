@@ -9,6 +9,12 @@ import { NzInputModule } from "ng-zorro-antd/input";
 import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzRadioModule } from "ng-zorro-antd/radio";
+import { NzIconModule } from "ng-zorro-antd/icon";
+import { NzDescriptionsModule } from "ng-zorro-antd/descriptions";
+import { NzTableModule } from "ng-zorro-antd/table";
+import { CdkFixedSizeVirtualScroll, CdkVirtualScrollViewport } from "@angular/cdk/scrolling";
+import { NzListModule } from "ng-zorro-antd/list";
+import { NzToolTipModule } from "ng-zorro-antd/tooltip";
 
 export const routes: Routes = [
   {
@@ -28,7 +34,14 @@ export const routes: Routes = [
     NzInputModule,
     NzSelectModule,
     NzButtonModule,
-    NzRadioModule
+    NzRadioModule,
+    NzIconModule,
+    NzDescriptionsModule,
+    NzTableModule,
+    CdkVirtualScrollViewport,
+    NzListModule,
+    NzToolTipModule,
+    CdkFixedSizeVirtualScroll
   ],
 })
 export class CreateOrderModule {

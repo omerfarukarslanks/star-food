@@ -192,5 +192,61 @@
         }
       ]
     }
+  ],
+  "order-items": [
+    {
+      "id": 111,
+      "name": "Beef Stroganoff",
+      "price": 29,
+      "quantity": 1
+    },
+    {
+      "id": 112,
+      "name": "Reuben",
+      "price": 18,
+      "quantity": 1
+    },
+    {
+      "id": 113,
+      "name": "Sandwich",
+      "price": 15,
+      "quantity": 1
+    },
+    {
+      "id": 114,
+      "name": "Waldorf Salad",
+      "price": 27,
+      "quantity": 1
+    },
+    {
+      "id": 115,
+      "name": "French Fries",
+      "price": 10,
+      "quantity": 1
+    },
+    {
+      "id": 116,
+      "name": "Ceaser Salad",
+      "price": 25,
+      "quantity": 1
+    },
+    {
+      "id": 117,
+      "name": "Chicken a la King",
+      "price": 40,
+      "quantity": 1
+    },
+    {
+      "id": 118,
+      "name": "Lobster Newburg",
+      "price": 33,
+      "quantity": 1
+    },
+    {
+      "id": 119,
+      "name": "Salisbury Steak",
+      "price": 45,
+      "quantity": 1
+    }
   ]
 }

@@ -14,6 +14,7 @@ module.exports = {
       '20': ['clamp(0.75rem, 1.042vw, 1.25rem)', '1.5rem'],
       '20-normal': ['clamp(0.75rem, 1.042vw, 1.25rem)', 'normal'],
       '22': ['clamp(0.75rem, 1.146vw, 1.25rem)', '1.5rem'],
+      '23': ['clamp(0.75rem, 1.146vw, 1.438rem)', '1.5rem'],
       '25': ['clamp(0.75rem, 1.302vw, 1.563rem)', 'normal'],
       '30': ['clamp(0.938rem,1.563vw, 1.875rem)', 'normal'],
       '35': ['clamp(0.938rem,1.563vw, 2.188rem)', 'normal'],
@@ -144,17 +145,23 @@ module.exports = {
       padding: {
         '9px': '0.563rem',
         '15px': '0.938rem',
+        '18px': '1.125rem',
         '22px': '1.375rem',
         '25px': '1.563rem',
         '26px': '1.625rem',
         '27px': '1.688rem',
         '29px': '1.813rem',
         '30px': '30px',
+        '34px': '2.125rem',
         '37px': '2.313rem',
         '39px': '2.438rem',
         '41px': '2.563rem',
+        '42px': '2.625rem',
         '43px': '2.688rem',
+        '47px': '2.938rem',
         '51px': '3.188rem',
+        '100px': '6.25rem',
+        '103px': '6.438rem',
         '50%': '50%',
         '18': '54px'
       },
@@ -162,8 +169,11 @@ module.exports = {
         '9px': '9px',
         '25px': '25px',
         '27px': '1.688rem',
+        '29px': '1.813rem',
         '43px': '2.688rem',
+        '59px': '3.688rem',
         '88px': '88px',
+        '18': '4.5rem',
         '104': '415px'
       },
       boxShadow: {
@@ -171,7 +181,8 @@ module.exports = {
       },
       lineHeight: {
         '47px': '2.9655',
-        '25px': '1.5625'
+        '25px': '1.5625',
+        '21px': '1.313'
       },
       width: {
         '98%': '98%',

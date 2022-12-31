@@ -1,56 +1,149 @@
-<div class="grid grid-cols-3">
-  <div>
-    <form nzLayout="vertical" nz-form [formGroup]="createOrderFormGroup">
+<div class="grid grid-rows-2 lg:grid-cols-2">
+  <div class="block pt-3 pr-5 lg:pr-0 lg:flex lg:justify-between">
 
-      <nz-form-item>
-        <nz-form-label [nzSpan]="24" nzRequired nzFor="name">Name</nz-form-label>
-        <nz-form-control [nzSpan]="24" nzErrorTip="The input is not valid Name!">
-          <input nz-input formControlName="name" id="name"/>
-        </nz-form-control>
-      </nz-form-item>
+    <div class="pr-0 w-full lg:pr-34px">
+      <form class="w-full" nzLayout="vertical" nz-form [formGroup]="createOrderFormGroup">
+        <nz-form-item>
+          <nz-form-control [nzSpan]="24">
+            <div class="flex">
+              <label class="text-18 font-medium leading-21px">Order Number:</label>
+              <span
+                class="ml-59px text-18 font-normal leading-21px text-sonic-silver">{{createOrderFormGroup.controls.orderNumber.value}}</span>
+            </div>
 
-      <nz-form-item>
-        <nz-form-label [nzSpan]="24" nzFor="items" nzRequired>Contract</nz-form-label>
-        <nz-form-control
-          [nzSpan]="24"
-          nzErrorTip="Please input your order items!"
-        >
-          <nz-select formControlName="items">
-            <nz-option nzLabel="+90" nzValue="+90"></nz-option>
-            <nz-option nzLabel="+91" nzValue="+91"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
+          </nz-form-control>
+        </nz-form-item>
 
-      <nz-form-item>
-        <nz-form-label [nzSpan]="24" nzFor="transferType" nzRequired>Transfer Type</nz-form-label>
-        <nz-form-control [nzSpan]="24" nzErrorTip="Please select Transfer Type!">
-          <nz-radio-group id="transferType" formControlName="transferType">
-            <label nz-radio [nzValue]="TransferTypeEnum.DELIVERY">Delivery</label>
-            <label nz-radio [nzValue]="TransferTypeEnum.TAKEAWAY">Takeaway</label>
-          </nz-radio-group>
-        </nz-form-control>
-      </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="24">
+            <div class="flex">
+              <label class="text-18 font-medium leading-21px">Date & Time:</label>
+              <span
+                class="ml-18 text-18 font-normal leading-21px text-sonic-silver">{{createOrderFormGroup.controls.orderDate.value}}</span>
+            </div>
 
-      <nz-form-item>
-        <nz-form-label [nzSpan]="24" nzFor="message">Message</nz-form-label>
-        <nz-form-control [nzSpan]="24">
-          <textarea rows="4" id="message" formControlName="message" nz-input></textarea>
-        </nz-form-control>
-      </nz-form-item>
+          </nz-form-control>
+        </nz-form-item>
 
-      <nz-form-item nz-row class="register-area">
-        <nz-form-control [nzSpan]="14" [nzOffset]="6">
-          <button nz-button nzType="primary">Register</button>
-        </nz-form-control>
-      </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzFor="name" class="text-18">Name</nz-form-label>
+          <nz-form-control [nzSpan]="24" nzErrorTip="The input is not valid Name!">
+            <input nz-input formControlName="name" id="name"/>
+          </nz-form-control>
+        </nz-form-item>
 
-    </form>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzFor="phoneNumber">Contact</nz-form-label>
+          <nz-form-control
+            [nzSpan]="24"
+            [nzValidateStatus]="createOrderFormGroup.controls['phoneNumber']"
+            nzErrorTip="Please input your phone number!"
+          >
+            <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+              <ng-template #addOnBeforeTemplate>
+                <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+                  <nz-option nzLabel="+90" nzValue="+90"></nz-option>
+                  <nz-option nzLabel="+91" nzValue="+91"></nz-option>
+                </nz-select>
+              </ng-template>
+              <input formControlName="phoneNumber" id="phoneNumber" nz-input/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzFor="transferType">Transfer Type</nz-form-label>
+          <nz-form-control [nzSpan]="24" nzErrorTip="Please select Transfer Type!">
+            <nz-radio-group id="transferType" formControlName="transferType">
+              <label nz-radio [nzValue]="TransferTypeEnum.DELIVERY">Delivery</label>
+              <label nz-radio [nzValue]="TransferTypeEnum.TAKEAWAY">Takeaway</label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzFor="message">Message to client</nz-form-label>
+          <nz-form-control [nzSpan]="24">
+            <textarea rows="4" id="message" formControlName="message" nz-input></textarea>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzFor="items">Order Items</nz-form-label>
+          <nz-form-control [nzSpan]="24">
+            <nz-select nzMode="multiple" nzShowSearch nzAllowClear nzPlaceHolder="Select a person"
+                       formControlName="items"
+                       [nzMaxTagPlaceholder]="itemsLength < 2 ? null : formLength"
+                       [nzMaxTagCount]="itemsLength === 1 ? 1 : 0"
+                       [nzOptionOverflowSize]=5
+                       (ngModelChange)="orderItemSelectChange($event)"
+            >
+              <nz-option *ngFor="let orderItem of orderItems" [nzLabel]="orderItem.name" [nzValue]="orderItem"
+                         nzCustomContent>
+                <td
+                  [nzChecked]="setOfCheckedId.has(orderItem.id)"
+                  (nzCheckedChange)="onItemChecked(orderItem, $event)"
+                >
+                  <span class="pl-2">{{orderItem.name}}</span>
+              </nz-option>
+            </nz-select>
+            <ng-template #formLength>
+              <p>{{itemsLength}} selected</p>
+            </ng-template>
+          </nz-form-control>
+
+        </nz-form-item>
+
+      </form>
+      <nz-list>
+        <nz-list-item *ngFor="let orderItem of listOfSelectedOrderItems">
+          <div class="grid grid-cols-4 w-full">
+            <div class="col-span-3">{{orderItem.name}}</div>
+            <div class="col-span-1 flex justify-between">
+              <div>
+                {{orderItem.price}}$
+              </div>
+              <div>{{orderItem.quantity}}</div>
+              <div>
+                <a (click)="deleteSelectedOrderItem(orderItem)">
+                  <span nz-icon nzType="close" nzTheme="outline"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </nz-list-item>
+      </nz-list>
+
+    </div>
+
+    <div class="hidden lg:block divider"></div>
+
+  </div>
+
+  <div class="pl-0 pr-5 lg:pl-47px lg:pr-7">
+
+    <div class="delivery-details">
+      <nz-descriptions nzTitle="Delivery Details" nzLayout="vertical"
+                       [nzColumn]="{ xxl: 5, xl: 5, lg: 5, md: 5, sm: 5, xs: 5 }">
+        <nz-descriptions-item nzSpan="2" nzTitle="Order Item">-</nz-descriptions-item>
+        <nz-descriptions-item nzSpan="2" nzTitle="Number">-</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Cost">-</nz-descriptions-item>
+      </nz-descriptions>
+    </div>
+
+    <div class="total-amount mt-29px">
+      <nz-descriptions>
+        <nz-descriptions-item nzTitle="Total Amount">-</nz-descriptions-item>
+      </nz-descriptions>
+    </div>
+
+    <div class="mt-8 text-right">
+      <a class="add-new-order-button w-full md:w-auto" nz-button>
+        Add New Order
+      </a>
+    </div>
 
 
   </div>
-  <div>
-    <nz-divider [nzType]="'vertical'"></nz-divider>
-  </div>
-  <div></div>
 </div>
