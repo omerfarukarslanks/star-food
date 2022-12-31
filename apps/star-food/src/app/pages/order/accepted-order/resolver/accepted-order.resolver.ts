@@ -11,6 +11,7 @@ export class AcceptedOrderResolver implements Resolve<Array<OrderListType>> {
 
   orderService = inject(OrderService);
   store = inject(Store);
+
   resolve(): Observable<Array<OrderListType>> {
     this.store.dispatch(new SetSidebarItemsAction());
     return this.orderService.getOrdersByOrderStatus(OrderStatusEnum.ACCEPTED);

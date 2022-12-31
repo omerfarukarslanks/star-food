@@ -1,0 +1,25 @@
+.add-new-order-button {
+  @apply text-18 font-medium text-white rounded-5px py-2.5 px-5 h-auto bg-crayola border-0 #{!important};
+}
+.order-description {
+
+  ::ng-deep .ant-descriptions-item-label {
+    @apply text-17 text-sonic-silver font-normal;
+
+    &::after {
+      content: '';
+    }
+  }
+
+  ::ng-deep .ant-descriptions-item-content {
+    @apply text-18 text-black font-medium;
+  }
+
+  ::ng-deep .ant-descriptions-view {
+    @apply rounded-10px border-1.5 border-solid border-chinese-silver mt-5 pt-27px pl-43px pr-26px pb-26px;
+  }
+
+  ::ng-deep .ant-descriptions-row > td, .ant-descriptions-row > th {
+    @apply pb-1 #{!important};
+  }
+}

@@ -1,19 +1,18 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Store } from "@ngxs/store";
 import { ActivatedRoute, Router } from "@angular/router";
+import { OrderService } from "@star-food/service";
 import { OrderListType, OrderStatusEnum, TransferTypeEnum, UpdateOrderModel } from "@star-food/model";
 import { SetPageTitle } from "@star-food/store";
-import { OrderService } from "@star-food/service";
-import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { PriceOperationsUtil } from "@star-food/util";
+import { untilDestroyed } from "@ngneat/until-destroy";
 
-@UntilDestroy()
 @Component({
-  selector: 'star-food-new-order',
-  templateUrl: './new-order.component.html',
-  styleUrls: ['./new-order.component.scss'],
+  selector: 'star-food-cooking',
+  templateUrl: './cooking.component.html',
+  styleUrls: ['./cooking.component.scss'],
 })
-export class NewOrderComponent implements OnInit {
+export class CookingComponent implements OnInit{
   store = inject(Store);
   activatedRoute = inject(ActivatedRoute);
   orderService = inject(OrderService);
@@ -22,13 +21,12 @@ export class NewOrderComponent implements OnInit {
   OrderTransferType = TransferTypeEnum;
 
   ngOnInit() {
-    this.store.dispatch(new SetPageTitle('New Order'));
+    this.store.dispatch(new SetPageTitle('Cooking'));
     this.orders = this.activatedRoute.snapshot.data['orders'];
   }
 
   orderStatusUpdate(order: UpdateOrderModel) {
-    order.orderStatus = OrderStatusEnum.ACCEPTED;
-    order.totalPrice = PriceOperationsUtil.totalPrice(order.items.map(item => item.price));
+    order.orderStatus = OrderStatusEnum.PARCEL_READY;
     this.orderService.orderStatusUpdate(order).pipe(untilDestroyed(this)).subscribe(() => {
       this.router.navigate(['/ui/order/accepted']);
     });

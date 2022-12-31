@@ -64,7 +64,7 @@ export class SidebarState {
           title: 'Cooking',
           order: 3,
           count: results[2].length,
-          routerLink: ''
+          routerLink: '/ui/order/cooking'
         },
         {
           title: 'Parcel Ready',

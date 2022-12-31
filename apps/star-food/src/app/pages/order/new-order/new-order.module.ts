@@ -8,6 +8,7 @@ import { NzTagModule } from "ng-zorro-antd/tag";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzIconModule } from "ng-zorro-antd/icon";
 import { OrderService } from "@star-food/service";
+import { OrderDescriptionModule } from "@star-food/ui";
 
 export const routes: Routes = [
   {
@@ -19,7 +20,7 @@ export const routes: Routes = [
 
 @NgModule({
   declarations: [NewOrderComponent],
-  imports: [CommonModule, NzDescriptionsModule, RouterModule.forChild(routes), NzTagModule, NzButtonModule, NzIconModule],
+    imports: [CommonModule, NzDescriptionsModule, RouterModule.forChild(routes), NzTagModule, NzButtonModule, NzIconModule, OrderDescriptionModule],
   providers: [OrderService, NewOrderResolver]
 })
 export class NewOrderModule {

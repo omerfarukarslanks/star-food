@@ -19,6 +19,10 @@ export const routes: Routes = [
   {
     path: 'create',
     loadChildren: () => import('./create-order/create-order.module').then(m => m.CreateOrderModule)
+  },
+  {
+    path: 'cooking',
+    loadChildren: () => import('./cooking/cooking.module').then(m => m.CookingModule)
   }
 ]
 
