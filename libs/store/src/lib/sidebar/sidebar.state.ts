@@ -70,7 +70,7 @@ export class SidebarState {
           title: 'Parcel Ready',
           order: 4,
           count: results[5].length,
-          routerLink: ''
+          routerLink: '/ui/order/parcel-ready'
         },
         {
           title: 'Delivered',

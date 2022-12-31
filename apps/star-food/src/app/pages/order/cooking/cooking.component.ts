@@ -5,8 +5,9 @@ import { OrderService } from "@star-food/service";
 import { OrderListType, OrderStatusEnum, TransferTypeEnum, UpdateOrderModel } from "@star-food/model";
 import { SetPageTitle } from "@star-food/store";
 import { PriceOperationsUtil } from "@star-food/util";
-import { untilDestroyed } from "@ngneat/until-destroy";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
+@UntilDestroy()
 @Component({
   selector: 'star-food-cooking',
   templateUrl: './cooking.component.html',
@@ -28,7 +29,7 @@ export class CookingComponent implements OnInit{
   orderStatusUpdate(order: UpdateOrderModel) {
     order.orderStatus = OrderStatusEnum.PARCEL_READY;
     this.orderService.orderStatusUpdate(order).pipe(untilDestroyed(this)).subscribe(() => {
-      this.router.navigate(['/ui/order/accepted']);
+      this.router.navigate(['/ui/order/parcel-ready']);
     });
   }
 }

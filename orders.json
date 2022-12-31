@@ -256,7 +256,7 @@
           "quantity": 1
         }
       ],
-      "orderStatus": "COOKING",
+      "orderStatus": "PARCEL_READY",
       "totalPrice": 98,
       "id": 8
     },
@@ -380,7 +380,7 @@
           "quantity": 1
         }
       ],
-      "orderStatus": "COOKING",
+      "orderStatus": "PARCEL_READY",
       "totalPrice": 60,
       "id": 12
     },
