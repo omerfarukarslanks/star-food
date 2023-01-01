@@ -6,14 +6,14 @@ export class NotificationService {
   notificationService = inject(NzNotificationService);
 
   success(title: string, content: string, duration = 2000) {
-    this.notificationService.success(title, content, {nzDuration: duration});
+    return this.notificationService.success(title, content, {nzDuration: duration});
   }
 
   error(title: string, content: string, duration: 2000) {
-    this.notificationService.error(title, content, {nzDuration: duration});
+    return this.notificationService.error(title, content, {nzDuration: duration});
   }
 
   info(title: string, content: string, duration = 2000) {
-    this.notificationService.info(title, content, {nzDuration: duration});
+   return this.notificationService.info(title, content, {nzDuration: duration});
   }
 }

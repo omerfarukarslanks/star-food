@@ -7,6 +7,7 @@ import { HttpClientTestingModule, HttpTestingController } from "@angular/common/
 describe('OrderService', () => {
   let service: OrderService;
   let httpTestingController: HttpTestingController;
+
   const dummyOrderItems = [
     {
       "id": 111,
@@ -123,7 +124,7 @@ describe('OrderService', () => {
       providers: [OrderService]
     });
     service = TestBed.inject(OrderService);
-    httpTestingController = TestBed.get(HttpTestingController);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
