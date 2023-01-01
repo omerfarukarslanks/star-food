@@ -29,7 +29,7 @@ export class NewOrderComponent implements OnInit {
   orderStatusUpdate(order: UpdateOrderModel) {
     order.orderStatus = OrderStatusEnum.ACCEPTED;
     order.totalPrice = PriceOperationsUtil.totalPrice(order.items.map(item => item.price));
-    this.orderService.orderStatusUpdate(order.id, order).pipe(untilDestroyed(this)).subscribe(() => {
+    this.orderService.orderStatusUpdate(order).pipe(untilDestroyed(this)).subscribe(() => {
       this.router.navigate(['/ui/order/accepted']);
     });
   }

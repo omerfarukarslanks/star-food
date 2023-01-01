@@ -16,7 +16,7 @@
           "id": 11,
           "name": "Paneer Tikka Masala",
           "price": 40,
-          "quantity": 1
+          "quantity": 5
         },
         {
           "id": 12,
@@ -48,7 +48,7 @@
           "id": 11,
           "name": "Paneer Tikka Masala",
           "price": 40,
-          "quantity": 1
+          "quantity": 8
         },
         {
           "id": 12,
@@ -256,7 +256,7 @@
           "quantity": 1
         }
       ],
-      "orderStatus": "ACCEPTED",
+      "orderStatus": "PARCEL_READY",
       "totalPrice": 98,
       "id": 8
     },
@@ -380,9 +380,40 @@
           "quantity": 1
         }
       ],
-      "orderStatus": "ACCEPTED",
+      "orderStatus": "NEW_ORDER",
       "totalPrice": 60,
       "id": 12
+    },
+    {
+      "orderNumber": "887332",
+      "orderDate": "1/1/2023, 2:17:27 AM",
+      "name": "Fatma",
+      "phoneNumber": "+09 5312894363",
+      "transferType": "TAKEAWAY",
+      "message": "Test 12",
+      "items": [
+        {
+          "id": 112,
+          "name": "Reuben",
+          "price": 18,
+          "quantity": 1
+        },
+        {
+          "id": 114,
+          "name": "Waldorf Salad",
+          "price": 27,
+          "quantity": 1
+        },
+        {
+          "id": 113,
+          "name": "Sandwich",
+          "price": 15,
+          "quantity": 1
+        }
+      ],
+      "orderStatus": "COOKING",
+      "totalPrice": 60,
+      "id": 13
     }
   ],
   "order-items": [

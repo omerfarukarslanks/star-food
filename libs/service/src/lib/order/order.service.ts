@@ -19,7 +19,7 @@ export class OrderService {
     return this.http.post<CreateOrderModel>('http://localhost:3000/orders', order);
   }
 
-  orderStatusUpdate(id: number, order: UpdateOrderModel): Observable<UpdateOrderModel> {
-    return this.http.put<UpdateOrderModel>(`http://localhost:3000/orders/${id}`, order)
+  orderStatusUpdate(order: UpdateOrderModel): Observable<UpdateOrderModel> {
+    return this.http.put<UpdateOrderModel>(`http://localhost:3000/orders/${order.id}`, order)
   }
 }

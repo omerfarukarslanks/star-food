@@ -64,25 +64,25 @@ export class SidebarState {
           title: 'Cooking',
           order: 3,
           count: results[2].length,
-          routerLink: ''
+          routerLink: '/ui/order/cooking'
         },
         {
           title: 'Parcel Ready',
           order: 4,
           count: results[5].length,
-          routerLink: ''
+          routerLink: '/ui/order/parcel-ready'
         },
         {
           title: 'Delivered',
           order: 5,
           count: results[3].length,
-          routerLink: ''
+          routerLink: '/ui/order/delivered'
         },
         {
           title: 'Completed',
           order: 6,
           count: results[1].length,
-          routerLink: ''
+          routerLink: '/ui/order/completed'
         }
       )
       ctx.patchState({

@@ -16,11 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "@star-food/directive": ["libs/directive/src/index.ts"],
-      "@star-food/header": ["libs/header/src/index.ts"],
       "@star-food/model": ["libs/model/src/index.ts"],
       "@star-food/service": ["libs/service/src/index.ts"],
-      "@star-food/sidebar": ["libs/sidebar/src/index.ts"],
       "@star-food/store": ["libs/store/src/index.ts"],
+      "@star-food/ui": ["libs/ui/src/index.ts"],
       "@star-food/util": ["libs/util/src/index.ts"]
     }
   },

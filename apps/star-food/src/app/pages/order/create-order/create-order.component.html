@@ -92,12 +92,28 @@
       <nz-list>
         <nz-list-item *ngFor="let orderItem of listOfSelectedOrderItems">
           <div class="grid grid-cols-4 w-full">
-            <div class="col-span-3">{{orderItem.name}}</div>
-            <div class="col-span-1 flex justify-between">
+            <div class="col-span-2 md:col-span-3">{{orderItem.name}}</div>
+            <div class="col-span-2 md:col-span-1 flex justify-between">
               <div>
                 {{orderItem.price}}$
               </div>
-              <div>{{orderItem.quantity}}</div>
+              <div>
+                <div class="quantity">
+                  <nz-input-group [nzPrefix]="prefix" [nzSuffix]="after">
+                    <input type="text" nz-input [(ngModel)]="orderItem.quantity"/>
+                  </nz-input-group>
+                  <ng-template #prefix>
+                    <a (click)="minus(orderItem)">
+                      <span nz-icon nzType="minus" nzTheme="outline"></span>
+                    </a>
+                  </ng-template>
+                  <ng-template #after>
+                    <a (click)="plus(orderItem)">
+                      <span nz-icon nzType="plus" nzTheme="outline"></span>
+                    </a>
+                  </ng-template>
+                </div>
+              </div>
               <div>
                 <a (click)="deleteSelectedOrderItem(orderItem)">
                   <span nz-icon nzType="close" nzTheme="outline"></span>
@@ -129,10 +145,10 @@
               {{selectedOrderItem.name}}
             </div>
             <div class="col-span-2">
-              {{selectedOrderItem.quantity}}
+              {{selectedOrderItem.price}}
             </div>
             <div>
-              {{selectedOrderItem.price}}
+              {{selectedOrderItem.quantity}}
             </div>
           </div>
         </div>
@@ -166,13 +182,13 @@
     <div class="mt-8 text-right flex flex-col md:flex-row justify-between">
       <div class="w-full md:w-95%">
         <a class="cancel-order-button w-full md:w-95% block text-center
-                  py-18px " (click)="cancelOrder()">
+                  py-18px" (click)="cancelOrder()">
           Cancel
         </a>
 
       </div>
       <div class="w-full mt-2 md:mt-0 md:w-95% flex md:justify-end">
-        <a class="add-new-order-button block w-full md:w-95% text-center
+        <a class="create-order-button block w-full md:w-95% text-center
                   py-18px" (click)="createOrder()"
            [ngClass]="createOrderFormGroup.valid ? 'background-malachite' : 'background-crayola'">
           Add New Order
@@ -180,7 +196,6 @@
 
       </div>
     </div>
-
 
   </div>
 </div>

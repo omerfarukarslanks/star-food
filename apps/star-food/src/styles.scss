@@ -16,3 +16,20 @@
 .pr34 {
   @apply pr-34px #{!important};
 }
+
+
+.add-new-order-button {
+  @apply text-18 font-medium text-white rounded-5px py-2.5 px-5 h-auto bg-crayola border-0 #{!important};
+}
+
+.transfer-type-tag {
+  @apply text-17 font-medium capitalize py-0.5 px-1.5 rounded-3px #{!important};
+}
+
+.cod-tag {
+  @apply text-17 font-medium capitalize py-0.5 px-1.5 rounded-3px ml-9px #{!important};
+}
+
+.showing-order-button {
+  @apply text-18 rounded-5px border-0 px-5 py-15px bg-bright-gray h-auto flex items-center font-medium #{!important};
+}

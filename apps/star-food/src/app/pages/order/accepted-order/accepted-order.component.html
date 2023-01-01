@@ -1,7 +1,7 @@
 <div class="pr-5 pt-5 lg:pt-37px lg:pr-41px">
   <div class="flex justify-between">
     <div>
-      <button class="showing-order-button" nz-button>
+      <button class="showing-order-button" (click)="showingOrder()" nz-button>
         <span nz-icon nzType="menu"></span>
         Showing 10 Orders
       </button>
@@ -14,79 +14,7 @@
   </div>
   <nz-divider></nz-divider>
 
-  <nz-descriptions *ngFor="let order of orders" nzLayout="vertical"
-                   [nzColumn]="{ xxl: 6, xl: 6, lg: 3, md: 3, sm: 2, xs: 1 }">
-    <nz-descriptions-item>
-      <div>
-        <div class="text-17 text-sonic-silver font-normal">Order Number</div>
-        <div>#{{order.orderNumber}}</div>
-      </div>
-    </nz-descriptions-item>
-    <nz-descriptions-item>
-      <div>
-        <div class="text-17 text-sonic-silver font-normal">Date & Time</div>
-        <div>{{order.orderDate}}</div>
-      </div>
-    </nz-descriptions-item>
-    <nz-descriptions-item>
-      <div>
-        <div class="text-17 text-sonic-silver font-normal">Name</div>
-        <div>{{order.name}}</div>
-      </div>
-    </nz-descriptions-item>
-    <nz-descriptions-item>
-      <div class="pt-0 md:pt-29px xl:pt-0">
-        <div class="text-17 text-sonic-silver font-normal">Contact</div>
-        <div>{{order.phoneNumber}}</div>
-      </div>
-    </nz-descriptions-item>
-    <nz-descriptions-item>
-      <div class="pt-0 md:pt-29px xl:pt-0">
-        <div class="text-17 text-sonic-silver font-normal">Trans Type</div>
-        <div>
-          <nz-tag [nzColor]="order.transferType === OrderTransferType.DELIVERY ? '#2A71FA': '#FC7501'" class="transfer-type-tag">{{order.transferType}}</nz-tag>
-        </div>
-      </div>
-    </nz-descriptions-item>
-    <nz-descriptions-item>
-      <div class="pt-0 md:pt-29px xl:pt-0">
-        <div class="text-17 text-sonic-silver font-normal">Amount</div>
-        <div>{{order.totalPrice}}$
-          <nz-tag *ngIf="order.cod" [nzColor]="'#BAA500'" class="cod-tag">{{order.cod ? 'COD' : ''}}</nz-tag></div>
-      </div>
-
-    </nz-descriptions-item>
-    <nz-descriptions-item [nzSpan]="6">
-      <div class="flex flex-col md:flex-row pt-1 md:pt-39px">
-        <div class="text-17 text-sonic-silver font-normal hidden md:block">Ordered<br>Items</div>
-        <div class="text-17 text-sonic-silver font-normal block md:hidden">Ordered Items</div>
-        <div class="flex flex-row md:flex-col cursor-pointer" *ngFor="let item of order.items">
-          <span
-            class="ml-0 mt-3 md:mt-0 md:ml-4 border-1 border-solid border-chinese-white py-9px px-4 bg-bright-gray rounded-4px">{{item.name}}
-            X {{item.quantity}}</span>
-        </div>
-      </div>
-
-    </nz-descriptions-item>
-    <nz-descriptions-item [nzSpan]="4">
-      <div class="pt-29px">
-        <div>
-          <span class="text-17 text-sonic-silver font-normal">Additional information from customer</span>
-        </div>
-        <div>
-          {{order.message}}
-        </div>
-      </div>
-    </nz-descriptions-item>
-    <nz-descriptions-item class="pt-29px" [nzSpan]="2">
-      <div class="flex justify-end items-center w-full pt-29px">
-        <a class="mr-3">
-          <span class="text-35" nz-icon nzType="printer" nzTheme="outline"></span>
-        </a>
-        <a [routerLink]="'/ui/order/create'" class="add-new-order-button" nz-button>
-          Move to Cooking
-        </a>
-      </div>
-    </nz-descriptions-item>
-  </nz-descriptions>
+  <star-food-order-description [orders]="listOfOrders" [orderStatusUpdateButtonName]="'Move to Cooking'"
+                                (orderStatusUpdateEvent)="orderStatusUpdate($event)"
+  ></star-food-order-description>
 </div>
