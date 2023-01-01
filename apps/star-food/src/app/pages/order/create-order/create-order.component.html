@@ -2,183 +2,14 @@
   <div class="block pt-3 pr-5 lg:pr-0 lg:flex lg:justify-between">
 
     <div class="pr-0 w-full lg:pr-34px">
-      <form class="w-full" nzLayout="vertical" nz-form [formGroup]="createOrderFormGroup">
-        <nz-form-item>
-          <nz-form-control [nzSpan]="24">
-            <div class="flex">
-              <label class="text-18 font-medium leading-21px">Order Number:</label>
-              <span
-                class="ml-59px text-18 font-normal leading-21px text-sonic-silver">#{{createOrderFormGroup.controls.orderNumber.value}}</span>
-            </div>
-
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-control [nzSpan]="24">
-            <div class="flex">
-              <label class="text-18 font-medium leading-21px">Date & Time:</label>
-              <span
-                class="ml-18 text-18 font-normal leading-21px text-sonic-silver">{{createOrderFormGroup.controls.orderDate.value}}</span>
-            </div>
-
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-label [nzSpan]="24" nzFor="name" class="text-18">Name</nz-form-label>
-          <nz-form-control [nzSpan]="24" nzErrorTip="The input is not valid Name!">
-            <input nz-input formControlName="name" id="name"/>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-label [nzSpan]="24" nzFor="phoneNumber">Contact</nz-form-label>
-          <nz-form-control
-            [nzSpan]="24"
-            [nzValidateStatus]="createOrderFormGroup.controls['phoneNumber']"
-            nzErrorTip="Please input your phone number!"
-          >
-            <input formControlName="phoneNumber" id="phoneNumber" starFoodPhoneMask nz-input/>
-
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-label [nzSpan]="24" nzFor="transferType">Transfer Type</nz-form-label>
-          <nz-form-control [nzSpan]="24" nzErrorTip="Please select Transfer Type!">
-            <nz-radio-group id="transferType" formControlName="transferType">
-              <label nz-radio [nzValue]="TransferTypeEnum.DELIVERY">Delivery</label>
-              <label nz-radio [nzValue]="TransferTypeEnum.TAKEAWAY">Takeaway</label>
-            </nz-radio-group>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-label [nzSpan]="24" nzFor="message">Message to client</nz-form-label>
-          <nz-form-control [nzSpan]="24">
-            <textarea rows="4" id="message" formControlName="message" nz-input></textarea>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-label [nzSpan]="24" nzFor="items">Order Items</nz-form-label>
-          <nz-form-control [nzSpan]="24">
-            <nz-select nzMode="multiple" nzShowSearch nzAllowClear
-                       formControlName="items"
-                       [nzMaxTagPlaceholder]="listOfSelectedOrderItems.length < 4 ? null : formLength"
-                       [nzMaxTagCount]="listOfSelectedOrderItems.length < 4 ? 3 : 0"
-                       [nzOptionOverflowSize]=5
-                       (ngModelChange)="orderItemSelectChange($event)"
-            >
-              <nz-option *ngFor="let orderItem of orderItems" [nzLabel]="orderItem.name" [nzValue]="orderItem"
-                         nzCustomContent>
-                <td
-                  [nzChecked]="setOfCheckedId.has(orderItem.id)"
-                  (nzCheckedChange)="onItemChecked(orderItem, $event)"
-                >
-                  <span class="pl-2">{{orderItem.name}}</span>
-              </nz-option>
-            </nz-select>
-            <ng-template #formLength>
-              <p>{{listOfSelectedOrderItems.length}} selected</p>
-            </ng-template>
-          </nz-form-control>
-
-        </nz-form-item>
-
-      </form>
-
-      <nz-list>
-        <nz-list-item *ngFor="let orderItem of listOfSelectedOrderItems">
-          <div class="grid grid-cols-4 w-full">
-            <div class="col-span-2 md:col-span-3">{{orderItem.name}}</div>
-            <div class="col-span-2 md:col-span-1 flex justify-between">
-              <div>
-                {{orderItem.price}}$
-              </div>
-              <div>
-                <div class="quantity">
-                  <nz-input-group [nzPrefix]="prefix" [nzSuffix]="after">
-                    <input type="text" nz-input [(ngModel)]="orderItem.quantity"/>
-                  </nz-input-group>
-                  <ng-template #prefix>
-                    <a (click)="minus(orderItem)">
-                      <span nz-icon nzType="minus" nzTheme="outline"></span>
-                    </a>
-                  </ng-template>
-                  <ng-template #after>
-                    <a (click)="plus(orderItem)">
-                      <span nz-icon nzType="plus" nzTheme="outline"></span>
-                    </a>
-                  </ng-template>
-                </div>
-              </div>
-              <div>
-                <a (click)="deleteSelectedOrderItem(orderItem)">
-                  <span nz-icon nzType="close" nzTheme="outline"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </nz-list-item>
-      </nz-list>
-
+      <star-food-create-order-form [orderItems]="orderItems"></star-food-create-order-form>
     </div>
     <div class="hidden lg:block divider"></div>
   </div>
 
   <div class="pl-0 pr-5 lg:pl-47px lg:pr-7">
 
-    <div class="delivery-details">
-      <div *ngIf="listOfSelectedOrderItems.length > 0;else defaultDeliverDetails">
-        <div class="grid grid-rows-3 rounded-5px border-0 bg-cultured pt-26px pl-26px pb-2.5">
-          <div><span class="text-18 text-black font-semibold">Delivery Details</span></div>
-          <div class="grid grid-cols-5 pt-14px">
-            <div class="col-span-2 text-17 text-sonic-silver font-normal">Order Item</div>
-            <div class="col-span-2 text-17 text-sonic-silver font-normal">Number</div>
-            <div class="text-17 text-sonic-silver font-normal">Quantity</div>
-          </div>
-          <div class="grid grid-cols-5" *ngFor="let selectedOrderItem of listOfSelectedOrderItems">
-            <div class="col-span-2">
-              {{selectedOrderItem.name}}
-            </div>
-            <div class="col-span-2">
-              {{selectedOrderItem.price}}
-            </div>
-            <div>
-              {{selectedOrderItem.quantity}}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <ng-template #defaultDeliverDetails>
-        <div class="grid grid-rows-3 rounded-5px border-0 bg-cultured pt-26px pl-26px pb-2.5">
-          <div><span class="text-18 text-black font-semibold">Delivery Details</span></div>
-          <div class="grid grid-cols-5 pt-14px">
-            <div class="col-span-2 text-17 text-sonic-silver font-normal">Order Item</div>
-            <div class="col-span-2 text-17 text-sonic-silver font-normal">Number</div>
-            <div class="text-17 text-sonic-silver font-normal">Quantity</div>
-          </div>
-          <div class="grid grid-cols-5">
-            <div class="col-span-2">-</div>
-            <div class="col-span-2">-</div>
-            <div>-</div>
-          </div>
-        </div>
-      </ng-template>
-
-    </div>
-
-    <div class="total-amount mt-29px">
-      <nz-descriptions>
-        <nz-descriptions-item
-          nzTitle="Total Amount">{{totalPrice !== 0 ? totalPrice : '-'}}</nz-descriptions-item>
-      </nz-descriptions>
-    </div>
-
+    <star-food-delivery-details></star-food-delivery-details>
     <div class="mt-8 text-right flex flex-col md:flex-row justify-between">
       <div class="w-full md:w-95%">
         <a class="cancel-order-button w-full md:w-95% block text-center
@@ -190,12 +21,11 @@
       <div class="w-full mt-2 md:mt-0 md:w-95% flex md:justify-end">
         <a class="create-order-button block w-full md:w-95% text-center
                   py-18px" (click)="createOrder()"
-           [ngClass]="createOrderFormGroup.valid ? 'background-malachite' : 'background-crayola'">
+           [ngClass]="checkFormValid ? 'background-malachite' : 'background-crayola'">
           Add New Order
         </a>
 
       </div>
     </div>
-
   </div>
 </div>

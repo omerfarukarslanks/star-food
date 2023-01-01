@@ -2,9 +2,10 @@ import { NgxsConfig } from "@ngxs/store/src/symbols";
 import { environment } from "ng-zorro-antd/core/environments";
 import { SidebarState } from "./sidebar";
 import { PageConfigState } from './page-config';
+import { OrderState } from "./order";
 
 export const STATES_MODULES = [
-  SidebarState, PageConfigState
+  SidebarState, PageConfigState, OrderState
 ];
 
 export const STORE_MODULES = {

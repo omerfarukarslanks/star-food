@@ -1,7 +1,3 @@
-.phone-select {
-  width: 70px;
-}
-
 .pr34 {
   @apply pr-34px #{!important};
 }
@@ -20,24 +16,6 @@
 
 .cancel-order-button {
   @apply text-17 font-normal rounded-5px border-solid border-1.5 border-chinese-silver text-sonic-silver #{!important};
-}
-
-.total-amount {
-  ::ng-deep .ant-descriptions {
-    @apply rounded-5px border-0 bg-cultured pt-26px pl-26px pr-103px pb-2.5;
-  }
-
-  ::ng-deep .ant-descriptions-item-label {
-    @apply text-18 text-black font-medium;
-
-    &::after {
-      content: '';
-    }
-  }
-
-  ::ng-deep .ant-descriptions-item-content {
-    @apply text-18 text-black font-medium justify-end;
-  }
 }
 
 
@@ -68,28 +46,4 @@
 .divider:before {
   content: '';
   @apply h-full w-px bg-silver left-[30px] absolute top-0 #{!important};
-}
-
-.quantity {
-   ::ng-deep .ant-input-affix-wrapper {
-    @apply rounded-12px border-2 w-69px p-0 text-center border-brandeis-blue #{!important};
-  }
-
-  ::ng-deep .ant-input {
-    @apply text-center #{!important};
-  }
-
-  ::ng-deep .anticon {
-    vertical-align: 0.08em !important;
-  }
-
-  ::ng-deep .ant-input-prefix {
-    font-size: 11px;
-    @apply mr-0 ml-1.5 cursor-pointer #{!important};
-  }
-
-  ::ng-deep .ant-input-suffix {
-    font-size: 11px;
-    @apply ml-0 mr-1.5 cursor-pointer #{!important};
-  }
 }

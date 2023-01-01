@@ -1,0 +1,17 @@
+.total-amount {
+  ::ng-deep .ant-descriptions {
+    @apply rounded-5px border-0 bg-cultured pt-26px pl-26px pr-103px pb-2.5;
+  }
+
+  ::ng-deep .ant-descriptions-item-label {
+    @apply text-18 text-black font-medium;
+
+    &::after {
+      content: '';
+    }
+  }
+
+  ::ng-deep .ant-descriptions-item-content {
+    @apply text-18 text-black font-medium justify-end;
+  }
+}

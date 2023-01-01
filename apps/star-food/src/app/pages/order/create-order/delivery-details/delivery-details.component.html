@@ -1,0 +1,47 @@
+<div class="delivery-details">
+  <div *ngIf="listOfSelectedOrderItems.length > 0;else defaultDeliverDetails">
+    <div class="grid grid-rows-3 rounded-5px border-0 bg-cultured pt-26px pl-26px pb-2.5">
+      <div><span class="text-18 text-black font-semibold">Delivery Details</span></div>
+      <div class="grid grid-cols-5 pt-14px">
+        <div class="col-span-2 text-17 text-sonic-silver font-normal">Order Item</div>
+        <div class="col-span-2 text-17 text-sonic-silver font-normal">Number</div>
+        <div class="text-17 text-sonic-silver font-normal">Quantity</div>
+      </div>
+      <div class="grid grid-cols-5" *ngFor="let selectedOrderItem of listOfSelectedOrderItems">
+        <div class="col-span-2">
+          {{selectedOrderItem.name}}
+        </div>
+        <div class="col-span-2">
+          {{selectedOrderItem.price}}
+        </div>
+        <div>
+          {{selectedOrderItem.quantity}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #defaultDeliverDetails>
+    <div class="grid grid-rows-3 rounded-5px border-0 bg-cultured pt-26px pl-26px pb-2.5">
+      <div><span class="text-18 text-black font-semibold">Delivery Details</span></div>
+      <div class="grid grid-cols-5 pt-14px">
+        <div class="col-span-2 text-17 text-sonic-silver font-normal">Order Item</div>
+        <div class="col-span-2 text-17 text-sonic-silver font-normal">Number</div>
+        <div class="text-17 text-sonic-silver font-normal">Quantity</div>
+      </div>
+      <div class="grid grid-cols-5">
+        <div class="col-span-2">-</div>
+        <div class="col-span-2">-</div>
+        <div>-</div>
+      </div>
+    </div>
+  </ng-template>
+
+</div>
+
+<div class="total-amount mt-29px">
+  <nz-descriptions>
+    <nz-descriptions-item
+      nzTitle="Total Amount">{{totalPrice !== 0 ? totalPrice : '-'}}</nz-descriptions-item>
+  </nz-descriptions>
+</div>

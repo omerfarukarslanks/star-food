@@ -12,4 +12,8 @@ export class NotificationService {
   error(title: string, content: string, duration: 2000) {
     this.notificationService.error(title, content, {nzDuration: duration});
   }
+
+  info(title: string, content: string, duration = 2000) {
+    this.notificationService.info(title, content, {nzDuration: duration});
+  }
 }

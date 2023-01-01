@@ -1,0 +1,23 @@
+.quantity {
+  ::ng-deep .ant-input-affix-wrapper {
+    @apply rounded-12px border-2 w-69px p-0 text-center border-brandeis-blue #{!important};
+  }
+
+  ::ng-deep .ant-input {
+    @apply text-center #{!important};
+  }
+
+  ::ng-deep .anticon {
+    vertical-align: 0.08em !important;
+  }
+
+  ::ng-deep .ant-input-prefix {
+    font-size: 11px;
+    @apply mr-0 ml-1.5 cursor-pointer #{!important};
+  }
+
+  ::ng-deep .ant-input-suffix {
+    font-size: 11px;
+    @apply ml-0 mr-1.5 cursor-pointer #{!important};
+  }
+}

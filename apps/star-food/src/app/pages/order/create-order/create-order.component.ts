@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Store } from "@ngxs/store";
-import { SetPageTitle, SetSidebarItemsAction } from "@star-food/store";
-import { FormBuilder, FormControl, UntypedFormControl, Validators } from "@angular/forms";
+import { OrderState, SetPageTitle } from "@star-food/store";
+import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { CreateOrderModel, OrderItemType, OrderStatusEnum, TransferTypeEnum } from "@star-food/model";
-import { OrderService } from "@star-food/service";
+import { NotificationService, OrderService } from "@star-food/service";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { Router } from "@angular/router";
 import { PriceOperationsUtil } from "@star-food/util";
@@ -19,99 +19,36 @@ export class CreateOrderComponent implements OnInit {
   formBuilder = inject(FormBuilder);
   orderService = inject(OrderService);
   router = inject(Router);
+  notificationService = inject(NotificationService);
 
   TransferTypeEnum = TransferTypeEnum;
   orderItems = new Array<OrderItemType>();
   listOfSelectedOrderItems = new Array<OrderItemType>();
-  setOfCheckedId = new Set<number>();
   totalPrice = 0;
-
-  createOrderFormGroup = this.formBuilder.group({
-    orderNumber: new FormControl(`${Math.floor(100000 + Math.random() * 900000)}`),
-    orderDate: new FormControl(new Date().toLocaleString()),
-    name: new FormControl('', {initialValueIsDefault: true, nonNullable: true, validators: Validators.required}),
-    phoneNumber: new FormControl('', {initialValueIsDefault: true, nonNullable: true, validators: Validators.required}),
-    transferType: new FormControl(TransferTypeEnum.DELIVERY, {
-      initialValueIsDefault: true,
-      nonNullable: true,
-      validators: Validators.required
-    }),
-    message: new FormControl('', {initialValueIsDefault: true}),
-    items: new FormControl<Array<OrderItemType>>([], {
-      initialValueIsDefault: true,
-      nonNullable: true,
-      validators: Validators.required
-    }),
-    orderStatus: new FormControl(OrderStatusEnum.NEW_ORDER, {initialValueIsDefault: true}),
-    totalPrice: new FormControl(0, {initialValueIsDefault: true})
-  });
+  checkFormValid = false;
 
   ngOnInit() {
     this.store.dispatch(new SetPageTitle('Create Order'));
     this.getOrderItems();
-    this.createOrderFormGroup.controls.items.valueChanges.subscribe((items: Array<OrderItemType>) => {
-      this.listOfSelectedOrderItems = items;
-      this.totalPrice = PriceOperationsUtil.totalPrice(this.listOfSelectedOrderItems.map(item => (item.price * item.quantity)));
-      this.createOrderFormGroup.patchValue({totalPrice: this.totalPrice});
-    });
+    this.store.select(OrderState.checkFormValid).subscribe(valid => this.checkFormValid = valid);
   }
 
   getOrderItems() {
     this.orderService.getOrderItems().pipe(untilDestroyed(this)).subscribe(orderItems => this.orderItems = orderItems);
   }
 
-  onItemChecked(orderItem: OrderItemType, checked: boolean): void {
-    this.updateCheckedSet(orderItem, checked);
-  }
-
-  updateCheckedSet(orderItem: OrderItemType, checked: boolean): void {
-    if (checked) {
-      this.setOfCheckedId.add(orderItem.id);
-    } else {
-      this.setOfCheckedId.delete(orderItem.id);
-    }
-    let list = [] as Array<OrderItemType>;
-    if (this.setOfCheckedId.size > 0) {
-      list = this.orderItems.filter(item => this.setOfCheckedId.has(item.id))
-    }
-    this.createOrderFormGroup.get('items')?.setValue(list);
-  }
-
-  orderItemSelectChange(orderItems: Array<OrderItemType>) {
-    this.setOfCheckedId = new Set<number>();
-    this.setOfCheckedId = new Set(orderItems.map(item => item.id));
-  }
-
-  deleteSelectedOrderItem(orderItem: OrderItemType) {
-    const index = this.listOfSelectedOrderItems.findIndex(item => item.id === orderItem.id);
-    this.listOfSelectedOrderItems.splice(index, 1);
-    this.createOrderFormGroup.patchValue({items: this.listOfSelectedOrderItems});
-    this.setOfCheckedId.delete(orderItem.id);
-  }
-
   createOrder() {
-    if (this.createOrderFormGroup.valid) {
-      this.orderService.createOrder(this.createOrderFormGroup.value as CreateOrderModel).pipe(untilDestroyed(this)).subscribe(response => {
+    if (this.checkFormValid) {
+      const order = this.store.selectSnapshot(OrderState.getCreateOrder);
+      this.orderService.createOrder(order).pipe(untilDestroyed(this)).subscribe(() => {
         this.router.navigate(['/ui/order/new-order']);
       });
+    } else {
+      this.notificationService.info('Warning','It is mandatory to fill all fields' );
     }
   }
 
   cancelOrder() {
     this.router.navigate(['/ui/order/accepted']);
-  }
-
-  minus(orderItem: OrderItemType) {
-    orderItem.quantity -= 1;
-    if (orderItem.quantity === 0) {
-      this.listOfSelectedOrderItems = this.listOfSelectedOrderItems.filter(item => item.id !== orderItem.id);
-      this.orderItems.forEach(item => item.id === orderItem.id ? item.quantity = 1 : null);
-    }
-    this.createOrderFormGroup.patchValue({items: this.listOfSelectedOrderItems});
-  }
-
-  plus(orderItem: OrderItemType) {
-    orderItem.quantity += 1;
-    this.createOrderFormGroup.patchValue({items: this.listOfSelectedOrderItems});
   }
 }

@@ -1,3 +1,3 @@
 export * from './lib/sidebar';
 export * from './lib/header';
-export * from './lib/order-description';
+export * from './lib/order';
