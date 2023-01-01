@@ -3,6 +3,7 @@ export default {
   displayName: 'store',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globalSetup: 'jest-preset-angular/global-setup',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
