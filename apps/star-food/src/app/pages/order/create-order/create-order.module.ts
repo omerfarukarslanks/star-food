@@ -4,7 +4,7 @@ import { CreateOrderComponent } from './create-order.component';
 import { RouterModule, Routes } from "@angular/router";
 import { NzDividerModule } from "ng-zorro-antd/divider";
 import { NzFormModule } from "ng-zorro-antd/form";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NzInputModule } from "ng-zorro-antd/input";
 import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzButtonModule } from "ng-zorro-antd/button";
@@ -43,7 +43,8 @@ export const routes: Routes = [
         NzListModule,
         NzToolTipModule,
         CdkFixedSizeVirtualScroll,
-        PhoneMaskModule
+        PhoneMaskModule,
+        FormsModule
     ],
 })
 export class CreateOrderModule {

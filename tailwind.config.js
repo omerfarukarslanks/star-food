@@ -35,6 +35,7 @@ module.exports = {
       '5px': '5px',
       '20px': '20px',
       '10px': '10px',
+      '12px': '12px',
       '15px': '10px',
       "50%": '50%',
       "0": "0"
@@ -109,7 +110,8 @@ module.exports = {
         'chinese-silver': '#CCCCCC',
         'chinese-white': '#E0E0E0',
         'malachite': '#0DC74E',
-
+        'brandeis-blue': '#0B69FF',
+        'dark-gray-x11': '#AAAAAA',
         'sapphire': '#2d64a0',
         'silver': '#bfbfbf',
         'cultured-earl': '#f5f5f5',
@@ -194,7 +196,7 @@ module.exports = {
         '95%': '95%',
         '94%': '94%',
         '70%': '70%',
-
+        '69px': '4.313rem'
       }
     },
   },

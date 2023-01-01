@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { Store } from "@ngxs/store";
 import { SetPageTitle, SetSidebarItemsAction } from "@star-food/store";
 import { FormBuilder, FormControl, UntypedFormControl, Validators } from "@angular/forms";
@@ -24,7 +24,7 @@ export class CreateOrderComponent implements OnInit {
   orderItems = new Array<OrderItemType>();
   listOfSelectedOrderItems = new Array<OrderItemType>();
   setOfCheckedId = new Set<number>();
-  checked = false;
+  inputValue = 0;
 
   totalPrice = 0;
 
@@ -53,7 +53,7 @@ export class CreateOrderComponent implements OnInit {
     this.getOrderItems();
     this.createOrderFormGroup.controls.items.valueChanges.subscribe((items: Array<OrderItemType>) => {
       this.listOfSelectedOrderItems = items;
-      this.totalPrice = PriceOperationsUtil.totalPrice(items.map(item => item.price));
+      this.totalPrice = PriceOperationsUtil.totalPrice(this.listOfSelectedOrderItems.map(item => (item.price * item.quantity)));
       this.createOrderFormGroup.patchValue({totalPrice: this.totalPrice});
     });
   }
@@ -94,9 +94,8 @@ export class CreateOrderComponent implements OnInit {
   deleteSelectedOrderItem(orderItem: OrderItemType) {
     const index = this.listOfSelectedOrderItems.findIndex(item => item.id === orderItem.id);
     this.listOfSelectedOrderItems.splice(index, 1);
+    this.createOrderFormGroup.patchValue({items: this.listOfSelectedOrderItems});
     this.setOfCheckedId.delete(orderItem.id);
-    this.createOrderFormGroup.controls.items.patchValue(this.listOfSelectedOrderItems);
-
   }
 
   createOrder() {
@@ -111,4 +110,20 @@ export class CreateOrderComponent implements OnInit {
   cancelOrder() {
     this.router.navigate(['/ui/order/accepted']);
   }
+
+  minus(orderItem: OrderItemType) {
+    orderItem.quantity -= 1;
+    if (orderItem.quantity === 0) {
+      this.listOfSelectedOrderItems = this.listOfSelectedOrderItems.filter(item => item.id !== orderItem.id);
+      this.orderItems.forEach(item => item.id === orderItem.id ? item.quantity = 1 : null);
+    }
+    this.createOrderFormGroup.patchValue({items: this.listOfSelectedOrderItems});
+  }
+
+  plus(orderItem: OrderItemType) {
+    orderItem.quantity += 1;
+    this.createOrderFormGroup.patchValue({items: this.listOfSelectedOrderItems});
+  }
+
+
 }
