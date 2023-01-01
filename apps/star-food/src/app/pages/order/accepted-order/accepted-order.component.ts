@@ -5,6 +5,7 @@ import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { OrderListType, OrderStatusEnum, UpdateOrderModel } from "@star-food/model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NotificationService, OrderService } from "@star-food/service";
+import { PriceOperationsUtil } from "@star-food/util";
 
 @UntilDestroy()
 @Component({
@@ -19,10 +20,12 @@ export class AcceptedOrderComponent implements OnInit {
   orderService = inject(OrderService);
   notificationService = inject(NotificationService);
   orders = new Array<OrderListType>();
-
+  listOfOrders = new Array<OrderListType>();
+  isShowingTenOrders = false;
   ngOnInit() {
     this.store.dispatch(new SetPageTitle('Accepted'));
     this.orders = this.activatedRoute.snapshot.data['orders'];
+    this.listOfOrders = [...this.orders];
   }
 
   orderStatusUpdate(order: UpdateOrderModel) {
@@ -35,6 +38,19 @@ export class AcceptedOrderComponent implements OnInit {
         );
         this.router.navigate(['/ui/order/cooking']);
       });
+    }
+  }
+
+  showingOrder() {
+    this.listOfOrders = [];
+    this.isShowingTenOrders = !this.isShowingTenOrders;
+    if(this.isShowingTenOrders) {
+      this.orders.forEach(order => {
+        const totalQuantity = PriceOperationsUtil.totalPrice(order.items.map(item => item.quantity));
+        totalQuantity > 10 ? this.listOfOrders.push(order) : null;
+      });
+    } else {
+      this.listOfOrders = [...this.orders];
     }
   }
 }

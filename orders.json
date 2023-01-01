@@ -16,7 +16,7 @@
           "id": 11,
           "name": "Paneer Tikka Masala",
           "price": 40,
-          "quantity": 1
+          "quantity": 5
         },
         {
           "id": 12,
@@ -48,7 +48,7 @@
           "id": 11,
           "name": "Paneer Tikka Masala",
           "price": 40,
-          "quantity": 1
+          "quantity": 8
         },
         {
           "id": 12,

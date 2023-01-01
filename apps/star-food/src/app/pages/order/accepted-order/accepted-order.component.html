@@ -1,7 +1,7 @@
 <div class="pr-5 pt-5 lg:pt-37px lg:pr-41px">
   <div class="flex justify-between">
     <div>
-      <button class="showing-order-button" nz-button>
+      <button class="showing-order-button" (click)="showingOrder()" nz-button>
         <span nz-icon nzType="menu"></span>
         Showing 10 Orders
       </button>
@@ -14,7 +14,7 @@
   </div>
   <nz-divider></nz-divider>
 
-  <star-food-order-description [orders]="orders" [orderStatusUpdateButtonName]="'Move to Cooking'"
+  <star-food-order-description [orders]="listOfOrders" [orderStatusUpdateButtonName]="'Move to Cooking'"
                                 (orderStatusUpdateEvent)="orderStatusUpdate($event)"
   ></star-food-order-description>
 </div>
