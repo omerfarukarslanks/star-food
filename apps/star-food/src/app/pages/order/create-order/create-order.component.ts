@@ -24,8 +24,6 @@ export class CreateOrderComponent implements OnInit {
   orderItems = new Array<OrderItemType>();
   listOfSelectedOrderItems = new Array<OrderItemType>();
   setOfCheckedId = new Set<number>();
-  inputValue = 0;
-
   totalPrice = 0;
 
   createOrderFormGroup = this.formBuilder.group({
@@ -79,13 +77,6 @@ export class CreateOrderComponent implements OnInit {
     this.createOrderFormGroup.get('items')?.setValue(list);
   }
 
-  confirmationValidator = (control: UntypedFormControl): {[s: string]: boolean} => {
-    if (!control.value) {
-      return {required: true};
-    }
-    return {};
-  };
-
   orderItemSelectChange(orderItems: Array<OrderItemType>) {
     this.setOfCheckedId = new Set<number>();
     this.setOfCheckedId = new Set(orderItems.map(item => item.id));
@@ -101,7 +92,6 @@ export class CreateOrderComponent implements OnInit {
   createOrder() {
     if (this.createOrderFormGroup.valid) {
       this.orderService.createOrder(this.createOrderFormGroup.value as CreateOrderModel).pipe(untilDestroyed(this)).subscribe(response => {
-        this.store.dispatch(new SetSidebarItemsAction());
         this.router.navigate(['/ui/order/new-order']);
       });
     }
@@ -124,6 +114,4 @@ export class CreateOrderComponent implements OnInit {
     orderItem.quantity += 1;
     this.createOrderFormGroup.patchValue({items: this.listOfSelectedOrderItems});
   }
-
-
 }
