@@ -1,12 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Store } from "@ngxs/store";
 import { OrderState, SetPageTitle } from "@star-food/store";
-import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { CreateOrderModel, OrderItemType, OrderStatusEnum, TransferTypeEnum } from "@star-food/model";
+import { OrderItemType,TransferTypeEnum } from "@star-food/model";
 import { NotificationService, OrderService } from "@star-food/service";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { Router } from "@angular/router";
-import { PriceOperationsUtil } from "@star-food/util";
 
 @UntilDestroy()
 @Component({
@@ -16,7 +14,6 @@ import { PriceOperationsUtil } from "@star-food/util";
 })
 export class CreateOrderComponent implements OnInit {
   store = inject(Store);
-  formBuilder = inject(FormBuilder);
   orderService = inject(OrderService);
   router = inject(Router);
   notificationService = inject(NotificationService);

@@ -31,7 +31,7 @@ export class AcceptedOrderComponent implements OnInit {
   orderStatusUpdate(order: UpdateOrderModel) {
     if (order) {
       order.orderStatus = OrderStatusEnum.COOKING;
-      this.orderService.orderStatusUpdate(order).pipe(untilDestroyed(this)).subscribe(() => {
+      this.orderService.orderStatusUpdate(order).subscribe(() => {
         this.notificationService.success(
           'Success',
           'Status update successful',

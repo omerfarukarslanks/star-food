@@ -1,9 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { NgxsModule, Store } from "@ngxs/store";
 import {
-  OrderState,
-  SetCreateOrderAction,
-  SetCreateOrderValidAction,
   SetIsCollapseAction,
   SidebarState
 } from "@star-food/store";

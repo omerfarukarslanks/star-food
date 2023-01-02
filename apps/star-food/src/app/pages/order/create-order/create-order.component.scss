@@ -14,25 +14,20 @@
   @apply text-18 font-medium text-white rounded-5px border-0 #{!important};
 }
 
-.cancel-order-button {
-  @apply text-17 font-normal rounded-5px border-solid border-1.5 border-chinese-silver text-sonic-silver #{!important};
-}
-
-
-:host ::ng-deep .ant-form-item-label > label {
-  @apply text-18 font-medium leading-21px;
+.cancel-button {
+  @apply text-17 font-normal rounded-5px border-1.5 text-sonic-silver border-solid border-chinese-silver #{!important};
 }
 
 :host ::ng-deep .ant-form-item-label > label[for=transferType] {
   @apply text-23 font-medium leading-21px;
 }
 
-:host ::ng-deep .ant-input {
-  @apply rounded-5px border-1.5 border-chinese-silver #{!important};
+:host ::ng-deep .ant-form-item-label > label {
+  @apply text-18 font-medium leading-21px;
 }
 
-:host ::ng-deep .ant-input#phoneNumber {
-  @apply rounded-tr-5px rounded-br-5px border-1.5 border-chinese-silver #{!important};
+:host ::ng-deep .ant-input {
+  @apply rounded-5px border-1.5 border-chinese-silver #{!important};
 }
 
 :host ::ng-deep .ant-select:not(.ant-select-customize-input) .ant-select-selector {
