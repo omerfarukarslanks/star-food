@@ -4,6 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "nx",
+    "start":  "nx serve star-food",
+    "test":  "nx test star-food",
     "postinstall": "node ./decorate-angular-cli.js",
     "json-server-start": "json-server --watch orders.json"
   },
