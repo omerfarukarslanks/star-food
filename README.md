@@ -6,9 +6,11 @@ The application was written using the Angular 15 version within the Nx 15 versio
 To run the application, it is necessary to run the commands under `Development server` in order.
 ## Development server
 
-Run `json-server --watch orders.json` for a mock data.
+Run `npm run json-server-start` for a mock data.
 
-Run `nx serve star-food` for a dev server. Navigate to http://localhost:4200/.
+Run `npm start` for a dev server. Navigate to http://localhost:4200/.
+
+Run `npm test` for a test running.
 
 ## Libraries
 `"nx": "15.4.2"`
